@@ -1,4 +1,4 @@
-# Project 1 
+# Project 1 ( Given Problem For Project )
 
 Your objective is to implement the LASSO regularized regression model using the Homotopy Method. You can read about this method in [this](https://people.eecs.berkeley.edu/~elghaoui/Pubs/hom_lasso_NIPS08.pdf) paper and the references therein. You are required to write a README for your project. Please describe how to run the code in your project *in your README*. Including some usage examples would be an excellent idea. You may use Numpy/Scipy, but you may not use built-in models from, e.g. SciKit Learn. This implementation must be done from first principles. You may use SciKit Learn as a source of test data.
 
@@ -72,8 +72,13 @@ From the images, we see that increasing the **regularization parameter (\lambda)
 ## What is the Homotopy Algorithm?
 The **Homotopy Algorithm** is an efficient method for solving the LASSO problem by tracking the solution path as the regularization parameter \( \lambda \) changes. Instead of solving the LASSO problem independently for multiple values of \( \lambda \), the Homotopy algorithm exploits the structure of the optimization problem to compute an entire path of solutions in an efficient manner.
 
-In simple terms we update regularization parameter and then compute for t=0 to t=1 using updated param.
+**In simple terms we update regularization parameter and then compute for t=0 to t=1 using updated param.**
 ![name](https://github.com/user-attachments/assets/28038d83-85a4-4b8c-9017-5d03fc35dc31)
+
+**RecLasso: homotopy algorithm for Lasso**
+
+![image](https://github.com/user-attachments/assets/7ec4503c-7e9c-43b0-97bf-7219fd56aa1f)
+
 
 
 Key advantages of the Homotopy Algorithm:
