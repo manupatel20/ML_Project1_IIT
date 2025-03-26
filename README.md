@@ -26,6 +26,7 @@ You may include Jupyter notebooks as visualizations or to help explain what your
   - [References](#references)
 
 ---
+---
 
 # Questions
 
@@ -61,6 +62,7 @@ Put your README here. Answer the following questions.
 
 
 ------
+---
 
 ## Installation and Setup
 
@@ -114,6 +116,7 @@ python .\test_LassoHomotopy.py
 ![image](https://github.com/user-attachments/assets/b335696b-fad7-4de3-a154-7b55e63bd11c)
 
 ---
+---
 
 ## Testing Different Datasets
 
@@ -128,10 +131,12 @@ We have tested different datasets including dataset with high colinearity and lo
 | data_1.csv  | x4, x3, and x6 are the primary drivers of y. All pairwise correlations between features are weak 0.10, indicating no significant collinearity. Features x1 to x9 appear largely independent of each other. | Highly  | Yes | 7/9  | ![image](https://github.com/user-attachments/assets/30df637b-3aa1-4bbe-b6d2-6cd319277a01) |
 | data_2.csv  | x5-x9 dominate y’s variation positively, x1/x2 oppose it strongly, and x3/x4 have a moderate positive effect.x1 and x2: Perfect correlation (1.00). Likely x2 = x1/2. x3 and x4: Perfect correlation (1.00). Likely x4 = x3/2. x5 to x9: Perfect correlation (1.00). These are identical variables. x1/x2 vs. x5-x9: Strong negative correlation (-0.90), indicating an inverse relationship. x3/x4 vs. x5-x9: Moderate positive correlation (0.51). x1/x2 vs. x3/x4: Weak correlation (0.06), suggesting independence. | Moderately  | Moderate | 4/9  | ![image](https://github.com/user-attachments/assets/61d49c64-5483-4e4d-9e59-4d2de19a840e) |
 ---
+---
 
 ## compare.py and generate.py
 
 
+---
 ---
 
 # LASSO Regression using the Homotopy Algorithm ( Extra Details )
@@ -201,18 +206,20 @@ Key advantages of the Homotopy Algorithm:
 For further theoretical background, refer to the uploaded research paper:[Link](https://people.eecs.berkeley.edu/~elghaoui/Pubs/hom_lasso_NIPS08.pdf)
 
 ---
-
+---
 
 ## Conclusion
 This project successfully implements LASSO regression using the Homotopy Algorithm. The model efficiently tracks the solution path as the regularization parameter varies, making it a powerful tool for feature selection and sparse modeling. By testing on synthetic and real datasets, we ensure correctness and demonstrate practical applications of LASSO regression.
 
 
 ---
+---
 
 ## References
 - "An Homotopy Algorithm for the Lasso with Online Observations." hom_lasso_NIPS08 [Link](https://people.eecs.berkeley.edu/~elghaoui/Pubs/hom_lasso_NIPS08.pdf)
 
 
+---
 ---
 
 
