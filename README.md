@@ -32,31 +32,36 @@ You may include Jupyter notebooks as visualizations or to help explain what your
 
 Put your README here. Answer the following questions.
 
-* What does the model you have implemented do and when should it be used?
+- What does the model you have implemented do and when should it be used?
 
-    The model implements **LASSO regression using the Homotopy Algorithm**. It is particularly useful for:
-  - **Feature Selection**: Eliminates irrelevant features by setting some coefficients to zero.
-  - **Handling Multicollinearity**: Works well in situations where predictors are highly correlated.
-  - **Sparse Models**: Reduces model complexity, making it interpretable and efficient.
-  - **High-Dimensional Data**: When the number of features is much larger than the number of observations.
+    - This model, LassoHomotopyModel, implements Lasso regression using the Homotopy method, which efficiently computes the regularization path as the regularization parameter ‘mu’ changes. It is designed for 
+      sparse regression problems, selecting only the most important features while shrinking others to zero.
+
+      When to Use It?
+  
+    -  High-dimensional datasets where feature selection is essential.
+  
+    -  Streaming or online learning scenarios where new data updates the model dynamically.
+  
+    -  When needing efficient computation of Lasso solutions, as the Homotopy approach avoids recomputing from scratch for each regularization step.
+  
+    -  Interpretability-focused applications, since it provides a clear active set of selected features.
 
 
 * How did you test your model to determine if it is working reasonably correctly?
-  - **Unit Tests**: Using `pytest`, we wrote tests to validate:
-  - Correct computation of cost function.
-  - Proper coefficient shrinkage for different values of \( \lambda \).
-  - The Homotopy path follows expected trajectories.
-  - **Synthetic Data**: Generated datasets where the expected outcome was known.
-  - **Comparison with Scikit-Learn**: Compared the results against `sklearn.linear_model.Lasso` to verify correctness.
+  - Our testing approach ensures correctness by splitting the dataset into training, validation, and test sets. Model 1 follows a batch learning approach, training on 75% of the data and evaluating with R² Score. Model 2 implements sequential learning, updating the model iteratively with validation data before testing. Both models check for coefficient sparsity and compare learned coefficients. This setup verifies prediction accuracy, ensures meaningful updates, and prevents excessive sparsity. The results confirm that the model adapts well while maintaining performance
+
 
 * What parameters have you exposed to users of your implementation in order to tune performance?
-  - `lambda (\lambda)`: Controls the degree of regularization.
-  - `tolerance`: Convergence threshold for optimization.
-  - `max_iter`: Limits the number of iterations for efficiency.
+  - our implementation currently does not expose tunable parameters; it initializes lambda (μ) dynamically as 0.1 * max(|X^T y|) and updates it during the homotopy path.
+ 
+    
 * Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?
-   - **Handling Extremely Large Datasets**: Current implementation may struggle with very large feature spaces. **Possible fix:** Use batch processing or sparse matrix optimizations.
-   - **Highly Collinear Features**: While LASSO selects one feature among correlated ones, it may be unstable. **Possible fix:** Combine LASSO with Ridge regression (**Elastic Net**).
-   - **Path Efficiency**: Computing the full Homotopy path may be expensive. **Possible fix:** Use an adaptive approach to select relevant \( \lambda \) values dynamically.
+    1.Highly Correlated Features (Multicollinearity)
+
+    -  When features are highly correlated, the homotopy method may struggle to select the correct variables, leading to unstable coefficient updates.
+    -  Potential Fix: Implement feature decorrelation techniques or adaptive selection rules.
+
 
 
 
@@ -125,15 +130,31 @@ We have tested different datasets including dataset with high colinearity and lo
 
 | **Data File**  | **Details** |  **Colinear** | **Sparse Solution** | **Sparse Var**  | **Output** |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| non-correlated_data.csv  | All correlations between x1, x2, x3, and x4 are very weak  | No  | No | 0/4  | ![image](https://github.com/user-attachments/assets/0428a2e5-71b6-451d-b66a-a77c1c6abb59) |
-| test_1.csv  |X_5, X_2, X_15, and X_3 are the most influential features for the target. X_1 and X_7 negatively affect it, while others (e.g., X_6, X_10) have minimal impact. X_5 and X_15: Moderate positive correlation (~0.50). As X_5 increases, X_15 tends to increase. X_6 and X_10: Strong positive correlation (~0.80). These two features are highly linearly related. X_2 and X_5: Moderate positive correlation (~0.60). Most other pairs (e.g., X_1 vs. X_3, X_7 vs. X_10) show weak correlations < 0.4 | Slightly(7-10)  | Moderate | 8/18  | ![image](https://github.com/user-attachments/assets/4709f781-c8fa-4a01-a1da-2bc1c29fe275) |
-| test_2.csv  | x5, x3, x4, x6, and x7 are the primary drivers of y, all negatively. x2, x8, and x1 have lesser influence; x9 is nearly irrelevant linearly. x3 and x4: Perfect correlation (1.00). These are essentially identical (x4 = x3 / 2). x6 and x7: Perfect correlation (1.00). These are identical (x7 = x6 / 2). x3, x4, and x5: Very strong correlation (~0.95). x5 closely follows x3 and x4. x3, x4, x5, x6, x7: Moderate to strong correlations (~0.60-0.65), suggesting a cluster of related features. Other pairs (e.g., x1-x2, x8-x9) show weak correlations < 0.25  | Highly  | Yes | 5/9  | ![image](https://github.com/user-attachments/assets/5d96cd87-b07c-42ff-a115-e55cf7b170b8) |
-| data_1.csv  | x4, x3, and x6 are the primary drivers of y. All pairwise correlations between features are weak 0.10, indicating no significant collinearity. Features x1 to x9 appear largely independent of each other. | Highly  | Yes | 7/9  | ![image](https://github.com/user-attachments/assets/30df637b-3aa1-4bbe-b6d2-6cd319277a01) |
-| data_2.csv  | x5-x9 dominate y’s variation positively, x1/x2 oppose it strongly, and x3/x4 have a moderate positive effect.x1 and x2: Perfect correlation (1.00). Likely x2 = x1/2. x3 and x4: Perfect correlation (1.00). Likely x4 = x3/2. x5 to x9: Perfect correlation (1.00). These are identical variables. x1/x2 vs. x5-x9: Strong negative correlation (-0.90), indicating an inverse relationship. x3/x4 vs. x5-x9: Moderate positive correlation (0.51). x1/x2 vs. x3/x4: Weak correlation (0.06), suggesting independence. | Moderately  | Moderate | 4/9  | ![image](https://github.com/user-attachments/assets/61d49c64-5483-4e4d-9e59-4d2de19a840e) |
+| non-correlated_data.csv  | All correlations between x1, x2, x3, and x4 are very weak  | No  | No | 0/4  | ![image](https://github.com/user-attachments/assets/41bfb2f5-3a6a-4b4f-9383-95379ca77eff) |
+| test_2.csv  | x5, x3, x4, x6, and x7 are the primary drivers of y, all negatively. x2, x8, and x1 have lesser influence; x9 is nearly irrelevant linearly. x3 and x4: Perfect correlation (1.00). These are essentially identical (x4 = x3 / 2). x6 and x7: Perfect correlation (1.00). These are identical (x7 = x6 / 2). x3, x4, and x5: Very strong correlation (~0.95). x5 closely follows x3 and x4. x3, x4, x5, x6, x7: Moderate to strong correlations (~0.60-0.65), suggesting a cluster of related features. Other pairs (e.g., x1-x2, x8-x9) show weak correlations < 0.25  | Highly  | Yes | 5/9  | ![WhatsApp Image 2025-03-26 at 22 16 32_ecb6adc0](https://github.com/user-attachments/assets/1a61bdf4-86f9-49f1-8fcf-edcdc88d9293) |
+| data_1.csv  | x4, x3, and x6 are the primary drivers of y. All pairwise correlations between features are weak 0.10, indicating no significant collinearity. Features x1 to x9 appear largely independent of each other. | Highly  | Yes | 7/9  | ![WhatsApp Image 2025-03-26 at 22 21 50_d0a1779e](https://github.com/user-attachments/assets/71d8d22b-2714-4728-a7c8-84262965eec0) |
+| data_2.csv  | x5-x9 dominate y’s variation positively, x1/x2 oppose it strongly, and x3/x4 have a moderate positive effect.x1 and x2: Perfect correlation (1.00). Likely x2 = x1/2. x3 and x4: Perfect correlation (1.00). Likely x4 = x3/2. x5 to x9: Perfect correlation (1.00). These are identical variables. x1/x2 vs. x5-x9: Strong negative correlation (-0.90), indicating an inverse relationship. x3/x4 vs. x5-x9: Moderate positive correlation (0.51). x1/x2 vs. x3/x4: Weak correlation (0.06), suggesting independence. | Moderately  | Moderate | 4/9  | ![WhatsApp Image 2025-03-26 at 22 22 22_8b798f23](https://github.com/user-attachments/assets/79cff691-26ea-489c-9271-0eaa58181da5) |
+
 ---
 ---
 
 ## compare.py and generate.py
+
+
+compare.py 
+
+This code loads a dataset, extracts feature columns (X) and the target column (y), and then applies three different Lasso regression models:
+
+homotopy_model - OUR custom Lasso model built from scratch using the Homotopy method.
+lars_model - The built-in LassoLars model from Scikit-learn.
+lasso_model - The built-in Lasso regression model from Scikit-learn.
+All three models are trained on the dataset, and their coefficients are printed for comparison. This helps evaluate how well the custom Homotopy Lasso model performs compared to standard implementations like LassoLars and Lasso.
+
+
+generate.py
+
+This code generates a synthetic dataset with 100,000 rows and 10 columns (9 features and 1 target variable y). The features (x1 to x9) are randomly sampled from different uniform distributions. The target variable y is computed using a nonlinear formula involving additions, multiplications, and subtractions of the features. The dataset's estimated memory size in within 20MB.
+
 
 
 ---
