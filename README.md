@@ -49,7 +49,7 @@ Put your README here. Answer the following questions.
 
 
 * How did you test your model to determine if it is working reasonably correctly?
-  - Our testing approach ensures correctness by splitting the dataset into training, validation, and test sets. Model 1 follows a batch learning approach, training on 75% of the data and evaluating with R² Score. Model 2 implements sequential learning, updating the model iteratively with validation data before testing. Both models check for coefficient sparsity and compare learned coefficients. This setup verifies prediction accuracy, ensures meaningful updates, and prevents excessive sparsity. The results confirm that the model adapts well while maintaining performance
+  - Our testing approach ensures correctness by splitting the dataset into training, validation, and test sets. Model 1 is trained on 75% of the data and evaluated with R² Score. Model 2 implements sequential learning, updating the model iteratively with validation data before testing. Both models check for coefficient sparsity and compare learned coefficients. This setup ensures meaningful updates, and prevents excessive sparsity. The results confirm that the model adapts well while maintaining performance
 
 
 * What parameters have you exposed to users of your implementation in order to tune performance?
@@ -118,7 +118,7 @@ To evaluate the trained LASSO model, run:
 ```sh
 python .\test_LassoHomotopy.py
 ```
-![image](https://github.com/user-attachments/assets/b335696b-fad7-4de3-a154-7b55e63bd11c)
+![WhatsApp Image 2025-03-26 at 22 21 50_8fb14c68](https://github.com/user-attachments/assets/f80ff952-11f1-46f1-af79-a6597303530c)
 
 ---
 ---
@@ -230,7 +230,7 @@ For further theoretical background, refer to the uploaded research paper:[Link](
 ---
 
 ## Conclusion
-This project successfully implements LASSO regression using the Homotopy Algorithm. The model efficiently tracks the solution path as the regularization parameter varies, making it a powerful tool for feature selection and sparse modeling. By testing on synthetic and real datasets, we ensure correctness and demonstrate practical applications of LASSO regression.
+This project successfully implements LASSO regression using the Homotopy Algorithm. The model efficiently tracks the solution path as the regularization parameter is updated dynamically, making it a powerful tool for feature selection and sparse modeling. By testing on synthetic and real datasets, we ensure correctness and demonstrate practical applications of LASSO regression.
 
 
 ---
