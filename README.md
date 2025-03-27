@@ -9,13 +9,14 @@ In order to turn your project in: Create a fork of this repository, fill out the
 You may include Jupyter notebooks as visualizations or to help explain what your model does, but you will be graded on whether your model is correctly implemented in the model class files and whether we feel your test coverage is adequate. We may award bonus points for compelling improvements/explanations above and beyond the assignment.
 
 ---
-## Team Mambers
+---
+## Team Members
 
   - Dhruv Bhimani (A20582831)
   - Manushi Patel (A20575366)
   - Smit Dhameliya (A20593154)
 ---
-
+---
 ## Table of Contents
 
 - [Questions](#questions)
@@ -130,7 +131,7 @@ python .\test_LassoHomotopy.py
 
 ## Testing Different Datasets
 
-We have tested different datasets including dataset with high colinearity and low colinearity. Let us observe the details of data and result.
+We have tested different datasets including datasets with high colinearity and low colinearity. Let us observe the details of data and results.
 
 
 | **Data File**  | **Details** |  **Colinear** | **Sparse Solution** | **Sparse Var**  | **Output** |
@@ -242,7 +243,7 @@ This project successfully implements LASSO regression using the Homotopy Algorit
 ---
 
 ## References
-- "An Homotopy Algorithm for the Lasso with Online Observations." hom_lasso_NIPS08 [Link](https://people.eecs.berkeley.edu/~elghaoui/Pubs/hom_lasso_NIPS08.pdf)
+- "A Homotopy Algorithm for the Lasso with Online Observations." hom_lasso_NIPS08 [Link](https://people.eecs.berkeley.edu/~elghaoui/Pubs/hom_lasso_NIPS08.pdf)
 
 
 ---
