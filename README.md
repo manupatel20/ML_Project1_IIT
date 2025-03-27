@@ -8,7 +8,12 @@ In order to turn your project in: Create a fork of this repository, fill out the
 
 You may include Jupyter notebooks as visualizations or to help explain what your model does, but you will be graded on whether your model is correctly implemented in the model class files and whether we feel your test coverage is adequate. We may award bonus points for compelling improvements/explanations above and beyond the assignment.
 
+---
+## Team Mambers
 
+  - Dhruv Bhimani (A20582831)
+  - Manushi Patel (A20575366)
+  - Smit Dhameliya (A20593154)
 ---
 
 ## Table of Contents
