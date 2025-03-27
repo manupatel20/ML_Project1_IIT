@@ -107,24 +107,22 @@ pip install -r requirements.txt
 
 ---
 
-### 4. Running the Project
+### 4. Running the Model
 Run the following command to train and test the LASSO model using the Homotopy method:
 ```sh
 cd .\LassoHomotopy\tests\
-pytest .\test_LassoHomotopy.py
+pytest .\test_LassoHomotopy.py -s
 ```
-![image](https://github.com/user-attachments/assets/5fa974e4-da0e-41d7-b425-8ed2a1799a5c)
+
+![WhatsApp Image 2025-03-26 at 22 46 50_4168e1f9](https://github.com/user-attachments/assets/a8b81131-5913-475f-a74f-adf8fa6ce25e)
+
 
 where:
-- `small_test.csv` is the input dataset.
+- `collinear_data.csv` is the input dataset.
 - test from different files by changing file names in `test_LassoHomotopy.py`
 
-### 5. Evaluating the Model
-To evaluate the trained LASSO model, run:
-```sh
-python .\test_LassoHomotopy.py
-```
-![WhatsApp Image 2025-03-26 at 22 21 50_8fb14c68](https://github.com/user-attachments/assets/f80ff952-11f1-46f1-af79-a6597303530c)
+
+
 
 ---
 ---
