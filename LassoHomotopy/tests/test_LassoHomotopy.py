@@ -170,7 +170,7 @@ def test_predict():
     data = []
 
     # Use absolute path for the CSV file
-    test_file = os.path.join(os.path.dirname(__file__), "non-correlated_data.csv")  # Update filename as needed
+    test_file = os.path.join(os.path.dirname(__file__), "test_2.csv")  # Update filename as needed
 
     # Read CSV data
     with open(test_file, "r") as file:
