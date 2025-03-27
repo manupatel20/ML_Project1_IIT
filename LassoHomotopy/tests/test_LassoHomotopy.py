@@ -170,7 +170,7 @@ def test_predict():
     data = []
 
     # Use absolute path for the CSV file
-    test_file = os.path.join(os.path.dirname(__file__), "data_1.csv")  # Update filename as needed
+    test_file = os.path.join(os.path.dirname(__file__), "non-correlated_data.csv")  # Update filename as needed
 
     # Read CSV data
     with open(test_file, "r") as file:
@@ -208,6 +208,7 @@ def test_predict():
     X_train, X_test = X[:split_index], X[split_index:]
     y_train, y_test = y[:split_index], y[split_index:]
 
+    
     model1 = LassoHomotopyModel()
 
     # Fit the model

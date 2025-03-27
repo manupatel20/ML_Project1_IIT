@@ -14,7 +14,7 @@ import csv
 
 # Load dataset
 data = []
-with open("test_1.csv", "r") as file:
+with open("non-correlated_data.csv", "r") as file:
     reader = csv.DictReader(file)
     for row in reader:
         data.append(row)
