@@ -159,7 +159,7 @@ import sys
 import numpy as np
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import r2_score
 
 # Ensure correct module import path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -225,10 +225,8 @@ def test_predict():
     print(f"Sparse Coefficients: {zero_coeffs}/{total_coeffs}")
     print("Whole data trained Coefficients:")
     print([float(f"{c:.1f}") if abs(c) >= 1e-9 else 0.0 for c in results.coef_])
-    mse = round(mean_squared_error(y_test, y_pred), 4)
+    
     r2 = round(r2_score(y_test, y_pred), 4)
-
-    print(f"Mean Squared Error: {mse}")
     print(f"R² Score: {r2}")
 
 
@@ -271,8 +269,5 @@ def test_predict():
     print("Model Coefficients after sequencial learning:")      # Coefficients after sequential learning
     print([float(f"{c:.1f}") if abs(c) >= 1e-9 else 0.0 for c in results22.coef_])    # Coefficients after sequential learning
 
-    mse = round(mean_squared_error(y_test, y_pred2), 4)
     r2 = round(r2_score(y_test, y_pred2), 4)
-
-    print(f"Mean Squared Error: {mse}")
     print(f"R² Score: {r2}")
